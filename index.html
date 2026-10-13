@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBA RECORDS — Илтгэлийн Слайд (PPT)</title>
+  <meta name="description" content="NBA-ийн түүхэн дэх хамгийн аугаа рекордууд, хичээлийн илтгэл.">
+
+  <!-- Google Fonts: Inter & Oswald (Supports Cyrillic Ө, Ү) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Presentation Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Film Grain & Ambient Aura -->
+  <div class="grain-overlay"></div>
+  <div class="ambient-glow"></div>
+
+  <!-- TOP BAR (Brand & Slide Topic) -->
+  <header class="deck-topbar">
+    <div class="topbar-brand">
+      <span class="brand-badge">NBA</span>
+      <span>RECORDS</span>
+    </div>
+    <div id="deck-topic" class="topbar-topic">ТАНИЛЦУУЛГА</div>
+    <div class="topbar-actions">
+      <button id="fullscreen-btn" class="btn-icon" title="Бүтэн дэлгэц (F)">
+        <i class="ph-bold ph-arrows-out"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- BOTTOM BAR (Slide Counter, Progress & Navigation) -->
+  <footer class="deck-bottombar">
+    <div class="deck-progress-track">
+      <div id="deck-progress-bar" class="deck-progress-fill"></div>
+    </div>
+    <div class="slide-counter">
+      <span id="current-slide-num" class="current">01</span>
+      <span class="total"> / 15</span>
+    </div>
+    <div class="deck-keys-hint">
+      Шилжих: <kbd>←</kbd> <kbd>→</kbd> эсвэл <kbd>Space</kbd>
+    </div>
+    <div class="deck-nav-btns">
+      <button id="prev-btn" class="nav-arrow-btn" aria-label="Өмнөх слайд">
+        <i class="ph-bold ph-caret-left"></i>
+      </button>
+      <button id="next-btn" class="nav-arrow-btn" aria-label="Дараагийн слайд">
+        <i class="ph-bold ph-caret-right"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       DECK CONTAINER (15 FULLSCREEN SLIDES)
+       ========================================== -->
+  <main class="deck-container">
+
+    <!-- SLIDE 1: НҮҮР ХУУДАС -->
+    <section class="slide active" data-topic="ЭХЛЭЛ">
+      <div class="bg-outline-text" style="top: 20%; left: 5%;">BASKETBALL</div>
+      <div class="slide-content-wrap">
+        <div class="slide-hero">
+          <div class="hero-tag">
+            <i class="ph-bold ph-trophy"></i>
+            <span>Хичээлийн Илтгэл</span>
+          </div>
+          <div>
+            <h1 class="hero-main-title">
+              NBA
+              <img src="assets/images/basketball-hero.png" alt="NBA бөмбөг" class="hero-ball-img" width="180" height="180">
+            </h1>
+          </div>
+          <p class="hero-subtitle-text">Итгэмээргүй боловч бүгд үнэн рекордууд</p>
+          <div class="hero-stats-row">
+            <div class="hero-stat-box">
+              <div class="hero-stat-num">1946</div>
+              <div class="hero-stat-label">Он үүссэн</div>
+            </div>
+            <div class="hero-stat-box">
+              <div class="hero-stat-num">30</div>
+              <div class="hero-stat-label">Лигийн баг</div>
+            </div>
+            <div class="hero-stat-box">
+              <div class="hero-stat-num">75+</div>
+              <div class="hero-stat-label">Жилийн түүх</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: ТҮҮХ -->
+    <section class="slide" data-topic="ЛИГИЙН ТҮҮХ">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">HISTORY</div>
+      <div class="slide-content-wrap" style="flex-direction: column; align-items: flex-start;">
+        <div class="slide-badge-title">Хөгжлийн үе шатууд</div>
+        <h2 class="slide-heading" style="margin-bottom: 2rem;">NBA-ИЙН ҮҮСЭЛ БА ХУВЬСАЛ</h2>
+        <div class="slide-grid-4">
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year">1891</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-basketball"></i></div>
+            </div>
+            <h4>Жеймс Нейсмит</h4>
+            <p>Спрингфилд хотод багш Жеймс Нейсмит сагсан бөмбөгийг бүтээв. Жимсний дүнзэн сагсыг хананд өлгөж анх тоглодог байжээ.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/james-naismith.jpg" alt="Жеймс Нейсмит">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year">1946</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-calendar"></i></div>
+            </div>
+            <h4>BAA Үүсгэн байгуулагдав</h4>
+            <p>1946 оны 6-р сарын 6-нд Нью-Йорк хотод "Basketball Association of America" (BAA) нэртэйгээр үүсэв.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/lakers-1972.jpg" alt="Эртний сагсан бөмбөг">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year">1949</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-arrows-merge"></i></div>
+            </div>
+            <h4>NBA Нэршил</h4>
+            <p>Өөр лигтэй нэгдэж, өнөөгийн албан ёсны NBA (National Basketball Association) нэрээ авав.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/bill-russell.jpg" alt="Лигийн нэгдэл">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2rem;">ӨНӨӨДӨР</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-globe"></i></div>
+            </div>
+            <h4>Дэлхийн тавцан</h4>
+            <p>Дэлхийн хамгийн алдартай спортын лигүүдийн нэг болж, дэлхий даяар тэрбум гаруй хүн үздэг болжээ.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/nba-arena.jpg" alt="Орчин үеийн NBA">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: 100 ОНОО — ВИЛТ ЧЕМБЕРЛЕН -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">100 PTS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Нэг тоглолтын дээд амжилт</div>
+            <div class="slide-huge-num"><span class="red">100</span> ОНОО</div>
+            <h2 class="slide-heading">Вилт Чемберлен</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>1962 оны 3-р сарын 2-нд Вилт Чемберлен нэг тоглолтод яг 100 оноо авсан. Одоо хүртэл хэн ч давж чадаагүй байна.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Тэр улирал бүтэн тоглолт бүрт дунджаар 50.4 оноо авсан итгэмээргүй үзүүлэлттэй.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Карьерийнхаа туршид нэг ч удаа 6 фолоор тоглолтоос хасагдаж байгаагүй.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card">
+            <img src="assets/images/wilt-chamberlain.jpg" alt="Вилт Чемберлен 100 оноо">
+            <div class="image-card-caption">Wilt Chamberlain — 100 Points Game (1962)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: 81 ОНОО — КОБИ БРАЙАНТ -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">81 PTS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Орчин цагийн хамгийн өндөр оноо</div>
+            <div class="slide-huge-num"><span class="red">81</span> ОНОО</div>
+            <h2 class="slide-heading">Коби Брайант</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>2006 оны 1-р сард Коби Брайант Торонто Рэпторсийн эсрэг 81 оноо авсан.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Энэ нь Вилт Чемберленээс (100 оноо) хойших NBA-ийн түүхэн дэх хамгийн өндөр үзүүлэлт юм.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>2016 онд зодог тайлж буй сүүлийн тоглолтондоо Коби 60 оноо авч домогт замналаа өндөрлөсөн.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card cutout-card">
+            <img src="assets/images/kobe-cutout.png" alt="Коби Брайант">
+            <div class="image-card-caption">Kobe Bryant — 81 Points & 60 Points Farewell</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 37 ОНОО НЭГ ҮЕД — КЛЭЙ ТОМПСОН -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">37 PTS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Нэг мөчлөгийн дээд амжилт</div>
+            <div class="slide-huge-num"><span class="red">37</span> ОНОО</div>
+            <h2 class="slide-heading">Клэй Томпсон</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Клэй Томпсон 2015 онд ердөө 12 минутын дотор 37 оноо авч, нэг мөчлөгийн түүхэн рекорд тогтоосон.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Энэ 12 минутад хийсэн 13 шидэлтээ бүгдийг нь оновчтой болгосон (9 гурван оноо, 4 хоёр оноо).</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Сагсан бөмбөгийн түүхэн дэх хамгийн төгс, 100% оновчтой оноо авалтын мөч гэж үнэлэгддэг.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card">
+            <img src="assets/images/klay-thompson.jpg" alt="Клэй Томпсон">
+            <div class="image-card-caption">Klay Thompson — 37 Points in a Single Quarter (2015)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: 11 АВАРГА — БИЛЛ РАССЕЛ -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">11 RINGS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Аваргын бөгжийн дээд амжилт</div>
+            <div class="slide-huge-num"><span class="red">11</span> АВАРГА</div>
+            <h2 class="slide-heading">Билл Рассел</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Билл Рассел Бостон Селтикстэй 13 жилийн дотор 11 удаа NBA-ийн аваргын цом хүртсэн.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Үүний 8 аваргыг 1959 оноос 1966 он хүртэл дараалан авсан нь давтагдашгүй ноёрхол юм.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>NBA-ийн Finals MVP цомыг түүний нэрэмжит болгон "Bill Russell Trophy" хэмээн нэрлэдэг.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card">
+            <img src="assets/images/bill-russell.jpg" alt="Билл Рассел">
+            <div class="image-card-caption">Bill Russell — 11 NBA Championships in 13 Years</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: 402 ГУРАВ — СТЕФЕН КАРРИ -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">402 3-PTS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Нэг улирлын гурван оноо</div>
+            <div class="slide-huge-num"><span class="red">402</span> ГУРАВ</div>
+            <h2 class="slide-heading">Стефен Карри</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Стефен Карри 2016 оны улиралд нийт 402 гурван онооны шидэлт амжилттай болгосон.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Тэр Рэй Алленыг гүйцэж, түүхэн дэх хамгийн олон гурван оноо оруулсан тамирчин болсон.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Орчин үеийн сагсан бөмбөгийн тоглолтын хэв маягийг бүхэлд нь өөрчилсөн суут шидэгч.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card cutout-card">
+            <img src="assets/images/stephen-curry.png" alt="Стефен Карри">
+            <div class="image-card-caption">Stephen Curry — 402 Three-Pointers in a Season (2016)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: 40,000 ОНОО — ЛЕБРОН ЖЕЙМС -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">40K PTS</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Бүх цаг үеийн онооны хаан</div>
+            <div class="slide-huge-num"><span class="red">40,000</span> ОНОО</div>
+            <h2 class="slide-heading">Леброн Жеймс</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>2023 онд Леброн Карим Абдул-Жабарыг гүйцэж, NBA-ийн бүх цаг үеийн хамгийн олон оноо авсан тоглогч болсон.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>Лигийн түүхэнд 40,000 онооны босгыг давсан анхны бөгөөд цорын ганц тоглогч.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-check-circle"></i>
+                <p>20 гаруй жилийн турш лигийн дээд оргилд форм алдалгүй тоглосоор байна.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card cutout-card">
+            <img src="assets/images/lebron-cutout.png" alt="Леброн Жеймс">
+            <div class="image-card-caption">LeBron James — 40,000 Career Points Leader</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: ТРИПЛ-ДАБЛ (УЭСТБРУК & ЙОКИЧ) -->
+    <section class="slide" data-topic="ТОГЛОГЧИЙН РЕКОРД">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">TRIPLE-DBL</div>
+      <div class="slide-content-wrap" style="flex-direction: column; align-items: flex-start;">
+        <div class="slide-badge-title">Олон талт ур чадварын нотолгоо</div>
+        <h2 class="slide-heading" style="margin-bottom: 2rem;">ТРИПЛ-ДАБЛЫН ШИНЭ ЭРИН ҮЕ</h2>
+        <div class="slide-grid-2">
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2.2rem;">РАССЕЛЛ УЭСТБРУК</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-lightning"></i></div>
+            </div>
+            <h4>Улирлын турш трипл-дабл дундаж</h4>
+            <p>2017 онд улирал бүтнээр нь дунджаар трипл-дабл хийсэн нь Оскар Робертсоноос хойш 55 жилийн дараа анхных болсон. Карьер дээрээ 200 орчим трипл-дабл хийсэн нь түүхэн дэх хамгийн их юм.</p>
+            <div class="deck-card-img-strip" style="height: 180px;">
+              <img src="assets/images/russell-westbrook.jpg" alt="Расселл Уэстбрук">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2.2rem;">НИКОЛА ЙОКИЧ</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-compass"></i></div>
+            </div>
+            <h4>Төвийн тоглогчийн трипл-дабл</h4>
+            <p>Никола Йокич төвийн тоглогч (центр) мөртлөө нэг бүтэн улирлын туршид оноо, самбар, дамжуулалтаар бүгдэд нь 10-аас дээш дундаж үзүүлж, уламжлалт байрлалын ойлголтыг эвдсэн.</p>
+            <div class="deck-card-img-strip" style="height: 180px; background: #181818;">
+              <img src="assets/images/jokic-cutout.png" alt="Никола Йокич" style="object-fit: contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ДОМОГТ ҮЗҮҮЛЭЛТҮҮД (МИЛЛЕР, РОДМАН, СТОКТОН) -->
+    <section class="slide" data-topic="ДОМОГТ АМЖИЛТУУД">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">LEGENDS</div>
+      <div class="slide-content-wrap" style="flex-direction: column; align-items: flex-start;">
+        <div class="slide-badge-title">Ховор бөгөөд давтагдашгүй</div>
+        <h2 class="slide-heading" style="margin-bottom: 2rem;">ДОМОГТ ТАМИРЧДЫН РЕКОРДУУД</h2>
+        <div class="slide-grid-3">
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2.2rem;">8 ОНОО</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-timer"></i></div>
+            </div>
+            <h4>Рэжги Миллер (9 секундэд)</h4>
+            <p>1995 онд Никсийн эсрэг ойролцоогоор 9 секундын дотор 8 оноо авч, ялагдах гэж байсан Индиана багийг ялалтад хүргэсэн гайхамшигт тоглолт.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/reggie-miller.jpg" alt="Рэжги Миллер">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2.2rem;">7 ТИТЭМ</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-shield"></i></div>
+            </div>
+            <h4>Дэнис Родман (Самбар)</h4>
+            <p>201 см өндөртэй мөртлөө өөрөөсөө хамаагүй өндөр тоглогчдын эсрэг 7 жил дараалан самбараас бөмбөг авалтаар лигт тэргүүлсэн.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/dennis-rodman.jpg" alt="Дэнис Родман">
+            </div>
+          </div>
+
+          <div class="deck-mini-card">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 2.2rem;">15,806</span>
+              <div class="deck-card-icon"><i class="ph-bold ph-hand-fist"></i></div>
+            </div>
+            <h4>Жон Стоктон (Дамжуулалт)</h4>
+            <p>Нийт 15,806 оновчтой дамжуулалт болон бөмбөг булаалтаар NBA-ийн бүх цаг үеийн түүхэнд хол тасархай тэргүүлэгч.</p>
+            <div class="deck-card-img-strip">
+              <img src="assets/images/john-stockton.jpg" alt="Жон Стоктон">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: БАГИЙН РЕКОРДУУД (33 & 73-9) -->
+    <section class="slide" data-topic="БАГИЙН АМЖИЛТ">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">DYNASTY</div>
+      <div class="slide-content-wrap">
+        <div class="slide-split-grid">
+          <div>
+            <div class="slide-badge-title">Ялалтын цуврал ба ноёрхол</div>
+            <div class="slide-huge-num"><span class="red">33</span> & <span class="red">73-9</span></div>
+            <h2 class="slide-heading">БАГИЙН ТҮҮХЭН АМЖИЛТУУД</h2>
+            <div class="slide-bullet-list">
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-trophy"></i>
+                <p><strong>33 дараалсан ялалт (1971-72 Lakers):</strong> Лос-Анжелес Лэйкерс бүтэн 33 тоглолт дараалан хожсон дээд амжилтыг тогтоосон.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-trophy"></i>
+                <p><strong>72-10 (1995-96 Bulls):</strong> Майкл Жордантай Чикаго Буллс 82 тоглолтын 72-д нь ялж байв.</p>
+              </div>
+              <div class="slide-bullet-item">
+                <i class="ph-bold ph-trophy"></i>
+                <p><strong>73-9 (2016 Warriors):</strong> Голден Стейт Уорриорс 73 ялалт авч Буллсын амжилтыг эвдсэн. Жордан Финалд 6 орж 6-д нь ялсан түүхтэй.</p>
+              </div>
+            </div>
+          </div>
+          <div class="slide-image-card cutout-card">
+            <img src="assets/images/jordan-cutout.png" alt="Майкл Жордан">
+            <div class="image-card-caption">Michael Jordan (Chicago Bulls) — 6 Championships & 72-10</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ХАМГИЙН ХЭТ ТОГЛОЛТУУД (EXTREMES) -->
+    <section class="slide" data-topic="ТҮҮХЭН ТОГЛОЛТУУД">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">EXTREMES</div>
+      <div class="slide-content-wrap" style="flex-direction: column; align-items: flex-start;">
+        <div class="slide-badge-title">Онооны эсрэг тэсрэг хоёр туйл</div>
+        <h2 class="slide-heading" style="margin-bottom: 2rem;">ХАМГИЙН ХЭТ ТОГЛОЛТУУД</h2>
+        <div class="slide-grid-2">
+          <div class="deck-mini-card" style="padding: 2.25rem;">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 3.5rem;">186 - 184</span>
+              <div class="deck-card-icon" style="background: rgba(225,6,0,0.2); color: var(--red);"><i class="ph-bold ph-flame"></i></div>
+            </div>
+            <h4>Хамгийн өндөр оноотой тоглолт (370 оноо)</h4>
+            <p>1983 онд Детройт Пистонс Денвер Наггетсийг гурван нэмэлт цагийн дараа хожсон. Хоёр баг нийлээд 370 оноо авсан нь NBA-ийн түүхэн дэх хамгийн өндөр онооны рекорд юм.</p>
+          </div>
+
+          <div class="deck-mini-card" style="padding: 2.25rem;">
+            <div class="deck-card-top-row">
+              <span class="deck-card-year" style="font-size: 3.5rem; color: #fff;">19 - 18</span>
+              <div class="deck-card-icon" style="background: rgba(255,255,255,0.1); color: #fff;"><i class="ph-bold ph-snowflake"></i></div>
+            </div>
+            <h4>Хамгийн бага оноотой тоглолт (37 оноо)</h4>
+            <p>1950 онд Лэйкерс Пистонсыг 19-18 харьцаагаар хожсон нь түүхэн дэх хамгийн бага оноотой тоглолт болсон. Үүний дараа 24 секундын довтолгооны цагийн дүрэм нэвтэрсэн.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: ӨНДӨР БА НАМХАН (SCALE) -->
+    <section class="slide" data-topic="ХАРЬЦУУЛАЛТ">
+      <div class="bg-outline-text" style="top: 15%; left: 2%;">SCALE</div>
+      <div class="slide-content-wrap" style="flex-direction: column;">
+        <div class="slide-badge-title">Биеийн өндөр ба ур чадвар</div>
+        <h2 class="slide-heading" style="margin-bottom: 1.5rem; text-align: center;">ӨНДӨР БА НАМХАН ТОГЛОГЧИД</h2>
+        <div class="height-deck-stage">
+          <div class="height-deck-player">
+            <div class="height-player-img-wrap">
+              <img src="assets/images/manute-cutout.png" alt="Мануте Бол">
+            </div>
+            <div class="height-player-details">
+              <div class="height-num-tag">231 см</div>
+              <div class="height-player-name">Мануте Бол</div>
+              <div class="height-player-desc">NBA-ийн түүхэн дэх хамгийн өндөр тоглогчдын нэг. Хаалт тавилтаараа алдартай.</div>
+            </div>
+          </div>
+
+          <div class="height-deck-player">
+            <div class="height-player-img-wrap" style="height: 210px;">
+              <img src="assets/images/muggsy-cutout.png" alt="Магси Богс">
+            </div>
+            <div class="height-player-details">
+              <div class="height-num-tag">160 см</div>
+              <div class="height-player-name">Магси Богс</div>
+              <div class="height-player-desc">14 жил NBA-д амжилттай тоглож, дамжуулалтаараа алдаршсан түүхэн дэх хамгийн намхан тоглогч.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: ГОЛ ТООН ҮЗҮҮЛЭЛТҮҮД -->
+    <section class="slide" data-topic="ТООН ҮЗҮҮЛЭЛТ">
+      <div class="bg-outline-text" style="top: 15%; right: 2%;">STATS</div>
+      <div class="slide-content-wrap" style="flex-direction: column; align-items: flex-start;">
+        <div class="slide-badge-title">Бүх рекордууд нэг дороос</div>
+        <h2 class="slide-heading" style="margin-bottom: 2rem;">ГОЛ ТООН ҮЗҮҮЛЭЛТҮҮДИЙН ХУРААНГУЙ</h2>
+        <div class="stats-deck-grid">
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">100</span></div>
+            <div class="stat-deck-title">Нэг тоглолтын рекорд</div>
+            <div class="stat-deck-sub">Вилт Чемберлен (1962)</div>
+          </div>
+
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">81</span></div>
+            <div class="stat-deck-title">Орчин үеийн рекорд</div>
+            <div class="stat-deck-sub">Коби Брайант (2006)</div>
+          </div>
+
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">37</span></div>
+            <div class="stat-deck-title">Нэг үеийн дээд амжилт</div>
+            <div class="stat-deck-sub">Клэй Томпсон (2015)</div>
+          </div>
+
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">11</span></div>
+            <div class="stat-deck-title">Аваргын цом</div>
+            <div class="stat-deck-sub">Билл Рассел (Бостон)</div>
+          </div>
+
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">73-9</span></div>
+            <div class="stat-deck-title">Улирлын ялалт</div>
+            <div class="stat-deck-sub">Голден Стейт (2016)</div>
+          </div>
+
+          <div class="stat-deck-card">
+            <div class="stat-deck-num"><span class="red">402</span></div>
+            <div class="stat-deck-title">Улирлын гурван оноо</div>
+            <div class="stat-deck-sub">Стефен Карри (2016)</div>
+          </div>
+
+          <div class="stat-deck-card" style="grid-column: span 2;">
+            <div class="stat-deck-num"><span class="red">40,000+</span></div>
+            <div class="stat-deck-title">Бүх цаг үеийн нийт оноо</div>
+            <div class="stat-deck-sub">Леброн Жеймс (2023)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ДҮГНЭЛТ -->
+    <section class="slide" data-topic="ДҮГНЭЛТ">
+      <div class="bg-outline-text" style="top: 25%; left: 0%; right: 0; text-align: center;">FINALE</div>
+      <div class="slide-content-wrap">
+        <div class="slide-outro">
+          <blockquote class="outro-big-quote">
+            "NBA бол зүгээр нэг спорт биш. Энэ бол хүний хязгаар хаана байдгийг харуулдаг <span class="red">тайз юм</span>."
+          </blockquote>
+          <p class="outro-body-text">
+            Нэг жимсний сагсаар эхэлсэн тоглоом өнөөдөр 100 оноо, 11 аварга, 37 оноотой мөчлөг гэх мэт ямар ч уран зохиолоос илүү гайхалтай түүхүүдийг бий болгосон.
+          </p>
+          <div class="outro-question-tag">Дараагийн рекорд хэн хийх бол?</div>
+          <div>
+            <div class="outro-thanks-box">АНХААРАЛ ТАВЬСАНД БАЯРЛАЛАА</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Presentation Deck Controller Script -->
+  <script src="script.js"></script>
+</body>
+</html>
