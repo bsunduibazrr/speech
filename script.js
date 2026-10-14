@@ -1,261 +1,105 @@
 /**
- * NBA RECORDS - 20-SLIDE INTERACTIVE PRESENTATION DECK (PPT)
- * Featuring Interactive 3D Basketball (Three.js) & GSAP Slide Animations
+ * NBA RECORDS - 15-SLIDE EDITORIAL PRESENTATION DECK (WHITE & RED)
+ * Powered by GSAP Kinetic Red Curtain Wipe Transitions & Responsive Controls
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ==========================================
-  // 1. THREE.JS 3D BASKETBALL ENGINE
-  // ==========================================
-  const canvas = document.getElementById('three-canvas');
-  let scene, camera, renderer, basketball, basketballGroup;
-  let isDragging = false;
-  let previousMousePosition = { x: 0, y: 0 };
-  let targetRotationX = 0.2;
-  let targetRotationY = 0.4;
-
-  function initThree() {
-    if (!canvas || typeof THREE === 'undefined') return;
-
-    // Scene & Camera
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.z = 6;
-
-    // Renderer
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Basketball Group
-    basketballGroup = new THREE.Group();
-    scene.add(basketballGroup);
-
-    // Procedural Basketball Texture
-    const textureCanvas = document.createElement('canvas');
-    textureCanvas.width = 1024;
-    textureCanvas.height = 512;
-    const ctx = textureCanvas.getContext('2d');
-
-    // Leather base
-    const grad = ctx.createLinearGradient(0, 0, 1024, 512);
-    grad.addColorStop(0, '#c73b0c');
-    grad.addColorStop(0.5, '#e04a1b');
-    grad.addColorStop(1, '#b53207');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 1024, 512);
-
-    // Pebble noise pattern
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-    for (let x = 0; x < 1024; x += 4) {
-      for (let y = 0; y < 512; y += 4) {
-        if ((x + y) % 8 === 0) {
-          ctx.fillRect(x, y, 2, 2);
-        }
-      }
-    }
-
-    // Black Seams of Basketball
-    ctx.strokeStyle = '#181818';
-    ctx.lineWidth = 10;
-    ctx.lineCap = 'round';
-
-    // Horizontal equator
-    ctx.beginPath();
-    ctx.moveTo(0, 256);
-    ctx.lineTo(1024, 256);
-    ctx.stroke();
-
-    // Vertical line
-    ctx.beginPath();
-    ctx.moveTo(256, 0);
-    ctx.lineTo(256, 512);
-    ctx.moveTo(768, 0);
-    ctx.lineTo(768, 512);
-    ctx.stroke();
-
-    // Curved ribs
-    ctx.beginPath();
-    ctx.ellipse(256, 256, 160, 220, 0, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.ellipse(768, 256, 160, 220, 0, 0, Math.PI * 2);
-    ctx.stroke();
-
-    const ballTexture = new THREE.CanvasTexture(textureCanvas);
-    ballTexture.wrapS = THREE.RepeatWrapping;
-    ballTexture.wrapT = THREE.ClampToEdgeWrapping;
-
-    // Bump texture
-    const bumpTexture = new THREE.CanvasTexture(textureCanvas);
-
-    // Sphere Geometry & Material
-    const geometry = new THREE.SphereGeometry(1.4, 64, 64);
-    const material = new THREE.MeshStandardMaterial({
-      map: ballTexture,
-      bumpMap: bumpTexture,
-      bumpScale: 0.03,
-      roughness: 0.5,
-      metalness: 0.08
-    });
-
-    basketball = new THREE.Mesh(geometry, material);
-    basketballGroup.add(basketball);
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
-
-    // Dramatic Red Rim Spotlight
-    const redLight = new THREE.PointLight(0xe10600, 3.5, 15);
-    redLight.position.set(-4, -2, 3);
-    scene.add(redLight);
-
-    // Subtle White Backlight
-    const backLight = new THREE.PointLight(0xffffff, 1.2, 10);
-    backLight.position.set(0, 3, -4);
-    scene.add(backLight);
-
-    // Position ball on Hero slide
-    updateBallPosition(0);
-
-    // Mouse Drag Interaction on 3D Ball
-    window.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      previousMousePosition = { x: e.clientX, y: e.clientY };
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging || !basketball) return;
-      const deltaX = e.clientX - previousMousePosition.x;
-      const deltaY = e.clientY - previousMousePosition.y;
-
-      targetRotationY += deltaX * 0.005;
-      targetRotationX += deltaY * 0.005;
-
-      previousMousePosition = { x: e.clientX, y: e.clientY };
-    });
-
-    window.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
-
-    // Resize Handling
-    window.addEventListener('resize', () => {
-      if (!camera || !renderer) return;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Animation Loop
-    function animate() {
-      requestAnimationFrame(animate);
-
-      if (basketball) {
-        if (!isDragging) {
-          targetRotationY += 0.004;
-          targetRotationX += Math.sin(Date.now() * 0.001) * 0.0005;
-        }
-
-        basketball.rotation.y += (targetRotationY - basketball.rotation.y) * 0.08;
-        basketball.rotation.x += (targetRotationX - basketball.rotation.x) * 0.08;
-
-        // Gentle floating bounce
-        basketball.position.y = Math.sin(Date.now() * 0.002) * 0.08;
-      }
-
-      renderer.render(scene, camera);
-    }
-    animate();
-  }
-
-  function updateBallPosition(slideIndex) {
-    if (!basketballGroup) return;
-
-    if (slideIndex === 0) {
-      // Hero slide: Right center, prominent
-      gsap.to(basketballGroup.position, {
-        x: window.innerWidth > 900 ? 1.6 : 0,
-        y: window.innerWidth > 900 ? 0 : -0.4,
-        z: 0,
-        duration: 1,
-        ease: 'power3.out'
-      });
-      gsap.to(basketballGroup.scale, {
-        x: 1,
-        y: 1,
-        z: 1,
-        duration: 1,
-        ease: 'power3.out'
-      });
-      gsap.to(canvas, { opacity: 0.95, duration: 0.6 });
-    } else {
-      // Other slides: Subtly in ambient background corner
-      gsap.to(basketballGroup.position, {
-        x: 2.8,
-        y: -1.8,
-        z: -2,
-        duration: 1.2,
-        ease: 'power3.out'
-      });
-      gsap.to(basketballGroup.scale, {
-        x: 0.6,
-        y: 0.6,
-        z: 0.6,
-        duration: 1.2,
-        ease: 'power3.out'
-      });
-      gsap.to(canvas, { opacity: 0.15, duration: 0.6 });
-    }
-  }
-
-  initThree();
-
-  // ==========================================
-  // 2. 20-SLIDE DECK CONTROLLER (PPT LOGIC)
-  // ==========================================
   const slides = document.querySelectorAll('.slide');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   const currentNumEl = document.getElementById('current-slide-num');
   const topicEl = document.getElementById('deck-topic');
   const progressBar = document.getElementById('deck-progress-bar');
+  const dotsContainer = document.getElementById('deck-dots-container');
   const fullscreenBtn = document.getElementById('fullscreen-btn');
+  const curtain = document.getElementById('transition-curtain');
 
   let currentIndex = 0;
   const totalSlides = slides.length;
-  let isAnimating = false;
+  let isTransitioning = false;
 
-  function updateDeck(newIndex) {
-    if (newIndex < 0 || newIndex >= totalSlides || isAnimating) return;
-    isAnimating = true;
+  // Build 15 Navigation Dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('div');
+      dot.className = `deck-dot ${idx === 0 ? 'active' : ''}`;
+      dot.title = `Слайд ${idx + 1}`;
+      dot.addEventListener('click', () => {
+        if (idx !== currentIndex && !isTransitioning) {
+          goToSlide(idx, idx > currentIndex ? 'next' : 'prev');
+        }
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
 
-    const previousSlide = slides[currentIndex];
-    currentIndex = newIndex;
-    const activeSlide = slides[currentIndex];
+  function updateDots(index) {
+    const dots = document.querySelectorAll('.deck-dot');
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === index);
+    });
+  }
 
-    // Update Slide Classes
+  // Smooth Kinetic Red Curtain Wipe Page Transition
+  function goToSlide(newIndex, direction = 'next') {
+    if (newIndex < 0 || newIndex >= totalSlides || isTransitioning) return;
+    isTransitioning = true;
+
+    const fromX = direction === 'next' ? -100 : 100;
+    const toX = 0;
+    const exitX = direction === 'next' ? 100 : -100;
+
+    if (typeof gsap !== 'undefined' && curtain) {
+      // Step 1: Red Curtain sweeps in
+      gsap.fromTo(curtain, 
+        { xPercent: fromX },
+        { 
+          xPercent: toX, 
+          duration: 0.32, 
+          ease: 'power3.in',
+          onComplete: () => {
+            // Step 2: Switch active slide while hidden under red curtain
+            applySlideSwitch(newIndex);
+
+            // Step 3: Red Curtain sweeps out, revealing the new slide
+            gsap.to(curtain, {
+              xPercent: exitX,
+              duration: 0.42,
+              ease: 'power3.out',
+              onComplete: () => {
+                isTransitioning = false;
+              }
+            });
+
+            // Animate incoming slide content with elegant stagger
+            animateSlideContent(slides[newIndex]);
+          }
+        }
+      );
+    } else {
+      applySlideSwitch(newIndex);
+      isTransitioning = false;
+    }
+  }
+
+  function applySlideSwitch(newIndex) {
     slides.forEach((slide, idx) => {
       slide.classList.remove('active', 'prev');
-      if (idx < currentIndex) {
+      if (idx < newIndex) {
         slide.classList.add('prev');
       }
     });
+
+    currentIndex = newIndex;
+    const activeSlide = slides[currentIndex];
     activeSlide.classList.add('active');
 
-    // Update 3D Ball Position
-    updateBallPosition(currentIndex);
-
-    // Update Counter & Topic
+    // Update Counter
     const formattedNum = String(currentIndex + 1).padStart(2, '0');
     if (currentNumEl) currentNumEl.textContent = formattedNum;
 
+    // Update Topic
     const topic = activeSlide.getAttribute('data-topic') || 'NBA RECORDS';
     if (topicEl) {
       topicEl.innerHTML = `<i class="ph-bold ph-sparkle"></i> <span>${topic}</span>`;
@@ -267,36 +111,36 @@ document.addEventListener('DOMContentLoaded', () => {
       progressBar.style.width = `${progress}%`;
     }
 
+    // Update Dots
+    updateDots(currentIndex);
+
     // Update Button Disabled States
     if (prevBtn) prevBtn.disabled = currentIndex === 0;
     if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+  }
 
-    // Trigger GSAP Stagger Entrance Animations for elements on the active slide
-    if (typeof gsap !== 'undefined') {
-      const animTargets = activeSlide.querySelectorAll(
-        '.slide-badge-title, .slide-huge-num, .slide-heading, .slide-bullet-item, .slide-image-card, .deck-mini-card, .height-deck-stage, .hero-tag, .hero-main-title, .hero-subtitle-text, .hero-stats-row, .outro-big-quote, .outro-body-text, .outro-question-tag, .outro-thanks-box'
-      );
+  function animateSlideContent(slideEl) {
+    if (typeof gsap === 'undefined' || !slideEl) return;
 
-      gsap.fromTo(animTargets,
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, stagger: 0.08, duration: 0.55, ease: 'power3.out' }
-      );
-    }
+    const targets = slideEl.querySelectorAll(
+      '.slide-pill, .slide-huge-num, .slide-heading, .slide-bullet-item, .slide-image-card, .deck-mini-card, .height-deck-stage, .hero-tag, .hero-main-title, .hero-subtitle-text, .hero-stats-row, .outro-big-quote, .outro-body-text, .outro-question-tag, .outro-thanks-box'
+    );
 
-    setTimeout(() => {
-      isAnimating = false;
-    }, 450);
+    gsap.fromTo(targets,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, stagger: 0.06, duration: 0.5, ease: 'power2.out' }
+    );
   }
 
   function nextSlide() {
     if (currentIndex < totalSlides - 1) {
-      updateDeck(currentIndex + 1);
+      goToSlide(currentIndex + 1, 'next');
     }
   }
 
   function prevSlide() {
     if (currentIndex > 0) {
-      updateDeck(currentIndex - 1);
+      goToSlide(currentIndex - 1, 'prev');
     }
   }
 
@@ -324,11 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
       case 'Home':
         e.preventDefault();
-        updateDeck(0);
+        goToSlide(0, 'prev');
         break;
       case 'End':
         e.preventDefault();
-        updateDeck(totalSlides - 1);
+        goToSlide(totalSlides - 1, 'next');
         break;
       case 'f':
       case 'F':
@@ -340,9 +184,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Trackpad / Mousewheel Navigation (Throttled)
   let wheelTimeout = null;
   window.addEventListener('wheel', (e) => {
-    if (wheelTimeout) return;
+    if (wheelTimeout || isTransitioning) return;
 
-    if (Math.abs(e.deltaY) > 30) {
+    if (Math.abs(e.deltaY) > 35) {
       if (e.deltaY > 0) {
         nextSlide();
       } else {
@@ -350,11 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       wheelTimeout = setTimeout(() => {
         wheelTimeout = null;
-      }, 700);
+      }, 750);
     }
   }, { passive: true });
 
-  // Touch Swipe on Mobile/Tablet
+  // Mobile / Tablet Touch Swipe
   let touchStartX = 0;
   let touchStartY = 0;
 
@@ -364,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   window.addEventListener('touchend', (e) => {
+    if (isTransitioning) return;
     const touchEndX = e.changedTouches[0].screenX;
     const touchEndY = e.changedTouches[0].screenY;
     const diffX = touchStartX - touchEndX;
@@ -394,5 +239,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Initialize First Slide
-  updateDeck(0);
+  applySlideSwitch(0);
 });
