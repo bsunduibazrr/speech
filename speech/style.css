@@ -8,39 +8,44 @@
   --bg-surface: #ffffff;
   --bg-subtle: #f0f2f5;
   --bg-elevated: #ffffff;
-  
+
   --red: #e10600;
   --red-bright: #ff2722;
   --red-dark: #b80500;
   --red-subtle: #ffebeb;
   --red-glow: rgba(225, 6, 0, 0.25);
-  
+
   --text-main: #111113;
   --text-secondary: #4b4f58;
   --text-muted: #8b909a;
   --text-light: #b0b4bd;
-  
+
   --border: rgba(17, 17, 19, 0.08);
   --border-light: rgba(17, 17, 19, 0.05);
   --border-red: rgba(225, 6, 0, 0.3);
-  
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 10px 30px rgba(17, 17, 19, 0.06), 0 2px 6px rgba(17, 17, 19, 0.03);
-  --shadow-hover: 0 18px 45px rgba(225, 6, 0, 0.1), 0 4px 12px rgba(17, 17, 19, 0.05);
 
-  --font-heading: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card:
+    0 10px 30px rgba(17, 17, 19, 0.06), 0 2px 6px rgba(17, 17, 19, 0.03);
+  --shadow-hover:
+    0 18px 45px rgba(225, 6, 0, 0.1), 0 4px 12px rgba(17, 17, 19, 0.05);
+
+  --font-heading: "Oswald", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -66,7 +71,7 @@ html, body {
   pointer-events: none;
   z-index: 1;
   background-size: 80px 80px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(17, 17, 19, 0.025) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(17, 17, 19, 0.025) 1px, transparent 1px);
 }
@@ -124,7 +129,10 @@ html, body {
   opacity: 0;
   visibility: hidden;
   transform: scale(0.98) translateY(20px);
-  transition: opacity 0.5s var(--ease-cinematic), transform 0.5s var(--ease-cinematic), visibility 0.5s;
+  transition:
+    opacity 0.5s var(--ease-cinematic),
+    transform 0.5s var(--ease-cinematic),
+    visibility 0.5s;
   z-index: 10;
   overflow: hidden;
 }
@@ -529,7 +537,9 @@ html, body {
   padding: 1rem 1.4rem;
   border-radius: 10px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .slide-bullet-item:hover {
@@ -575,7 +585,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .slide-image-card:hover {
@@ -590,7 +602,11 @@ html, body {
 }
 
 .slide-image-card.cutout-card {
-  background: radial-gradient(circle at center, #ffffff 40%, var(--bg-subtle) 100%);
+  background: radial-gradient(
+    circle at center,
+    #ffffff 40%,
+    var(--bg-subtle) 100%
+  );
 }
 
 .slide-image-card.cutout-card img {
@@ -663,11 +679,14 @@ html, body {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .deck-mini-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -870,10 +889,12 @@ html, body {
   .slide {
     padding: 4.5rem 2rem 4rem 2rem;
   }
-  .deck-topbar, .deck-bottombar {
+  .deck-topbar,
+  .deck-bottombar {
     padding: 0 1.5rem;
   }
-  .slide-split-grid, .slide-split-grid.reversed {
+  .slide-split-grid,
+  .slide-split-grid.reversed {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
