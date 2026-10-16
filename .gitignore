@@ -1,0 +1,6 @@
+.DS_Store
+.kombai/
+node_modules/
+.vercel/
+.netlify/
+*.log
