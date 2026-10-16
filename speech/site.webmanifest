@@ -1,0 +1,9 @@
+{
+  "name": "NBA Records — cultureofspeech",
+  "short_name": "NBA Records",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#e10600",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
